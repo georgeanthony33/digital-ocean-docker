@@ -8,11 +8,11 @@ app.get('/status', (req, res) => res.send({status: "I'm alive!"}))
 app.post('/payload', (req, res) => {
   
   if (req.headers['x-github-event'] === "push") {
-    console.log(req.headers['x-github-delivery'])
-    // console.log(exec('echo 1'))
-    // console.log(exec('docker build . -t digital-ocean-docker'))
-    // console.log(exec('docker tag digital-ocean-docker georgeanthony33/digital-ocean-docker:1.2'))
-    // console.log(exec('echo 2'))
+    const dockerTag = req.headers['x-github-delivery']
+    console.log(exec('echo 1'))
+    console.log(exec('docker build . -t digital-ocean-docker'))
+    console.log(exec(`docker tag digital-ocean-docker georgeanthony33/${dockerTag}`))
+    console.log(exec('echo 2'))
   }
 })
 
