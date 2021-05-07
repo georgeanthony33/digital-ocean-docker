@@ -7,8 +7,6 @@ app.get('/status', (req, res) => res.send({status: "I'm alive!"}))
 
 app.post('/payload', (req, res) => {
   
-  
-  
   if (req.headers['x-github-event'] === "push") {
     console.log(req)
     // console.log(exec('echo 1'))
