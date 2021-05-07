@@ -3,7 +3,7 @@ const app = express()
 const port = 4567
 const exec = require('sync-exec');
 
-app.get('/status', (req, res) => res.send({status: "I'm alive!"}))
+app.get('/status', (req, res) => res.send({status: "I'm still alive!"}))
 
 app.post('/payload', (req, res) => {
   
