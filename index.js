@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 4567
 const exec = require('sync-exec');
 
 app.get('/status', (req, res) => res.send({status: "I'm still alive!"}))
