@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 4567
+const port = 3000
 const exec = require('sync-exec');
 
 app.get('/status', (req, res) => res.send({status: "I'm still alive!"}))
@@ -11,7 +11,7 @@ app.post('/payload', (req, res) => {
     const dockerTag = req.headers['x-github-delivery']
     exec('echo 1')
     exec('docker build . -t digital-ocean-docker')
-    exec(`docker tag digital-ocean-docker georgeanthony33/digital-ocean-docker${dockerTag}`)
+    exec(`docker tag digital-ocean-docker georgeanthony33/digital-ocean-docker:${dockerTag}`)
     exec('docker login')
     exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`)
     exec('ssh -i id_rsa root@138.68.169.66')
