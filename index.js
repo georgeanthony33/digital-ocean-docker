@@ -9,9 +9,14 @@ app.post('/payload', (req, res) => {
   
   if (req.headers['x-github-event'] === "push") {
     const dockerTag = req.headers['x-github-delivery']
+    exec('echo 1')
+    exec('docker build . -t digital-ocean-docker')
+    exec(`docker tag digital-ocean-docker georgeanthony33/${dockerTag}`)
     console.log(exec('echo 1'))
-    console.log(exec('docker build . -t digital-ocean-docker'))
-    console.log(exec(`docker tag digital-ocean-docker georgeanthony33/${dockerTag}`))
+    exec('docker login')
+    exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`)
+    exec('ssh -i id_rsa root@138.68.169.66')
+    exec(`docker run -p 4567:3000 georgeanthony33/digital-ocean-docker:${dockerTag}`)
     console.log(exec('echo 2'))
   }
 })
