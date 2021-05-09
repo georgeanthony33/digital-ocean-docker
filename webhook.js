@@ -13,6 +13,7 @@ app.post('/payload', (req, res) => {
     exec('ssh -i id_rsa root@138.68.169.66')
     exec('service docker restart')
     exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:${dockerTag}`)
+    console.log(exec('echo 1'))
   }
 })
 
