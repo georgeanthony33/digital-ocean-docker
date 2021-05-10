@@ -15,15 +15,10 @@ app.post('/payload', (req, res) => {
     console.log(exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`))
     console.log(exec('ssh -i id_rsa root@138.68.169.66'))
     const ssh = new SSH({
-      host: '138.68.169.66',
-      user: 'root',
-      pass: 'a6:85:9f:d9:e9:fc:4c:ad:cd:1e:17:36:6b:a2:aa:bf'
+      host: process.env.host,
+      user: process.env.user,
+      pass: process.env.pass,
     });
-    // ssh.exec('echo $PATH', {
-    //   out: function(stdout) {
-    //       console.log(stdout);
-    //   }
-    // }).start();
     ssh.exec('service docker restart', {
       out: function(stdout) {
           console.log(stdout)
