@@ -3,6 +3,7 @@ const app = express()
 const port = 4567
 const exec = require('sync-exec');
 const SSH = require('simple-ssh');
+require('dotenv').config()
 
 app.post('/payload', (req, res) => {
   if (req.headers['x-github-event'] === "push") {
@@ -14,9 +15,9 @@ app.post('/payload', (req, res) => {
     console.log(exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`))
     console.log(exec('ssh -i id_rsa root@138.68.169.66'))
     const ssh = new SSH({
-      host: 'IP_ADDRESS',
-      user: 'USERNAME',
-      pass: 'PASSWORD'
+      host: '138.68.169.66',
+      user: 'root',
+      pass: 'a6:85:9f:d9:e9:fc:4c:ad:cd:1e:17:36:6b:a2:aa:bf'
     });
     // ssh.exec('echo $PATH', {
     //   out: function(stdout) {
