@@ -12,7 +12,7 @@ app.post('/payload', (req, res) => {
     console.log(exec(`docker tag digital-ocean-docker georgeanthony33/digital-ocean-docker:${dockerTag}`))
     console.log(exec('docker login'))
     console.log(exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`))
-    return res.status(200).json({ message: 'success' })
+    return res.status(200).json({ 'message': 'success' })
   }
 })
 
