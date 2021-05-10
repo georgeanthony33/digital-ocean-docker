@@ -24,7 +24,7 @@ app.post('/payload', (req, res) => {
     //   }
     // }).start();
     ssh.exec('service docker restart', { out: function (stdout) { console.log(stdout); } }).start()
-    ssh.exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:1.9`, { out: function (stdout) { console.log(stdout); } }).start()
+    // ssh.exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:1.9`, { out: function (stdout) { console.log(stdout); } }).start()
     console.log(exec('echo'))
   }
 })
