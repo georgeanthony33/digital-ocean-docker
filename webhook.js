@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 4567
 const exec = require('sync-exec');
+const SSH = require('simple-ssh');
 
 app.post('/payload', (req, res) => {
   if (req.headers['x-github-event'] === "push") {
@@ -12,8 +13,13 @@ app.post('/payload', (req, res) => {
     console.log(exec('docker login'))
     console.log(exec(`docker push georgeanthony33/digital-ocean-docker:${dockerTag}`))
     console.log(exec('ssh -i id_rsa root@138.68.169.66'))
-    console.log(exec('service docker restart'))
-    console.log(exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:${dockerTag}`))
+    const ssh = new SSH({
+      host: 'IP_ADDRESS',
+      user: 'USERNAME',
+      pass: 'PASSWORD'
+    });
+    console.log(ssh.exec('service docker restart', { out: function (stdout) { console.log(stdout); } }).start())
+    console.log(ssh.exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:${dockerTag}`, { out: function (stdout) { console.log(stdout); } }).start())
     console.log(exec('echo'))
   }
 })
