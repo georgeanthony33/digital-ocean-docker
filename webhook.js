@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 4567
+const exec = require('sync-exec');
 const exec = require('ssh-exec')
 require('dotenv').config()
 
