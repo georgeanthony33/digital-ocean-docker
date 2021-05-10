@@ -18,8 +18,13 @@ app.post('/payload', (req, res) => {
       user: 'USERNAME',
       pass: 'PASSWORD'
     });
-    console.log(ssh.exec('service docker restart', { out: function (stdout) { console.log(stdout); } }).start())
-    console.log(ssh.exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:${dockerTag}`, { out: function (stdout) { console.log(stdout); } }).start())
+    // ssh.exec('echo $PATH', {
+    //   out: function(stdout) {
+    //       console.log(stdout);
+    //   }
+    // }).start();
+    ssh.exec('service docker restart', { out: function (stdout) { console.log(stdout); } }).start()
+    ssh.exec(`docker run -p 3000:3000 georgeanthony33/digital-ocean-docker:1.9`, { out: function (stdout) { console.log(stdout); } }).start()
     console.log(exec('echo'))
   }
 })
